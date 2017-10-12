@@ -35,6 +35,38 @@ Update system & install necessary libraries<br/>
 `sudo apt-get install libical-dev -y`<br/>
 `sudo apt-get install bluetooth bluez libusb-dev libdbus-1-dev bluez-hcidump -y`<br/>
 
+### Step 4 - Compile & Installing BlueZ
+Originally Raspbian has BlueZ 5.23 installed it works fine with bluetooth devices. But unfortunately this version of BlueZ is incompatible with Qt qtconnectivity libraries.<br/> 
+So you need to install newer (than BlueZ 5.37) version of BlueZ.<br/>
+`mkdir bluez`<br/>
+`cd bluez`<br/>
+`wget http://www.kernel.org/pub/linux/bluetooth/bluez-5.44.tar.xz`<br/>
+`tar xf bluez-5.44.tar.xz`<br/>
+`cd bluez-5.44`<br/>
+`./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-library`<br/>
+`make`<br/>
+`sudo make install`<br/>
+`sudo ln -svf /usr/libexec/bluetooth/bluetoothd /usr/sbin/`<br/>
+`sudo install -v -dm755 /etc/bluetooth`<br/>
+`sudo install -v -m644 src/main.conf /etc/bluetooth/main.conf`<br/>
+`sudo systemctl daemon-reload`<br/>
+`sudo systemctl start bluetooth`<br/>
+
+Verify you have installed right version of BlueZ by following command:<br/>
+`bluetoothd --version`<br/>
+
+Set pi user access to org.bluez by adding following lines into **bluetooth.conf**:<br/>
+``
+ <policy user="pi">
+    <allow send_destination="org.bluez"/>
+  </policy>
+``
+
+`sudo nano /etc/dbus-1/system.d/bluetooth.conf`<br/>
+`sudo systemctl enable /lib/systemd/system/bluetooth.service`<br/>
+`sudo reboot`<br/>
+
+
 
 
 
