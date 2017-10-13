@@ -7,6 +7,8 @@ The software core is based on open source <b>QT framework</b> & open source <b>w
 
 MicroComputer RPI3/RPIW can stream video, can control external devices via GPIO, can communicate with Bluetooth network & can communicate with cloud service.
 
+[Lets start](https://github.com/0xffe/CASa/tree/master/device) to launch CASa
+
 Project phases:
  - STAGE #1 - preparing software core
  - STAGE #2 - developing remote video monitoring web-service
