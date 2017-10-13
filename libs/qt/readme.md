@@ -4,26 +4,7 @@ Follow to instructions below.<br/>
 
 **Important:** this instruction was verified only with Raspberri PI3 & Raspberry PI Zero W (RPI3 & RPIW)
 
-### Step 1 - Image preparing
-Download the latest version of Raspbian images [here](https://www.raspberrypi.org/downloads/raspbian/) and install it on SD-card.
-Oldiest [images](https://downloads.raspberrypi.org/raspbian/images/) of Raspbian can be used too. But supported Raspbian versions are Jessie & Stretch.
-
-### Step 2 - Network configuration 
-Using file manager copies **ssh** file into the root of SD-card (this allows ssh-connection to RPI3/RPIW).<br/>
-Copies **wpa_supplicant.conf** file into the root of SD-card (this automatically configured Wi-Fi connection on RPI3/RPIW).<br/>
-Modify **wpa_supplicant.conf** file - write a real SSID & password of your Wi-Fi networks. <br/>
-Several Wi-Fi networks can be configured in this file (as it is on original file). It is usefull if your device moving from one location to another. If you are using only one Wi-fi network just keep only one configuration in the **wpa_supplicant.conf** file. <br/>
-
-### Step 3 [on RPI] - Initial start
-Insert SD-card into your RPI3/RPIW and power on.<br/> 
-Connect to device using [Putty](www.putty.org) (or another terminal).<br/>
-Default user/password for Raspbian - pi/raspberry.<br/>
-
-Run following command & change user password on the menu.<br/>
-`sudo raspi-config`<br/>
-Then reboot.<br/>
-`sudo reboot`<br/>
-
+### Step 1 [on RPI] - Initial
 Update packages sources list (uncomment deb-src line)<br/>
 `sudo nano /etc/apt/sources.list`<br/>
 
@@ -35,7 +16,7 @@ Update system & install necessary libraries<br/>
 `sudo apt-get install libical-dev -y`<br/>
 `sudo apt-get install bluetooth bluez libusb-dev libdbus-1-dev bluez-hcidump -y`<br/>
 
-### Step 4 [on RPI] - Compile & Installing BlueZ
+### Step 2 [on RPI] - Compile & Installing BlueZ
 Originally Raspbian has BlueZ 5.23 installed it works fine with bluetooth devices. But unfortunately this version of BlueZ is incompatible with Qt qtconnectivity libraries.<br/> 
 So you need to install newer (than BlueZ 5.37) version of BlueZ.<br/>
 `mkdir bluez`<br/>
@@ -67,12 +48,12 @@ Set pi user access to org.bluez by adding following lines into **bluetooth.conf*
 `sudo reboot`<br/>
 
 
-### Step 5 [on RPI] - Preparing QT folders
+### Step 3 [on RPI] - Preparing QT folders
 `sudo mkdir /usr/local/qt5pi`<br/>
 `sudo chown pi:pi /usr/local/qt5pi`<br/>
 
 
-### Step 6 [on Host] - Crosscompiling Qt
+### Step 4 [on Host] - Crosscompiling Qt
 **It's is recommended to use Ubuntu 16.04 64-bit version as host for compiling Qt reasons.**<br/>
 Creating necessaries folders & clone tools<br/>
 `mkdir ~/opt`<br/>
@@ -121,7 +102,7 @@ Copying Qt libraries to the RPI3/RPIW
 `cd ~/opt`<br/>
 `rsync -avz qt5pi pi@raspberrypi.local:/usr/local`<br/>
 
-### Step 7 [on RPI] - Initializing the Qt libraries on the device
+### Step 5 [on RPI] - Initializing the Qt libraries on the device
 Update the device to let the linker find the Qt libs<br/>
 `echo /usr/local/qt5pi/lib | sudo tee /etc/ld.so.conf.d/qt5pi.conf`<br/>
 `sudo ldconfig`<br/>
