@@ -10,7 +10,7 @@ Copies **wpa_supplicant.conf** file into the root of SD-card (this automatically
 Modify **wpa_supplicant.conf** file - write a real SSID & password of your Wi-Fi networks. <br/>
 Several Wi-Fi networks can be configured in this file (as it is on original file). It is usefull if your device moving from one location to another. If you are using only one Wi-fi network just keep only one configuration in the **wpa_supplicant.conf** file. <br/>
 
-### Step 3 [on RPI] - Initial start
+### Step 3 - Initial start
 Insert SD-card into your RPI3/RPIW and power on.<br/> 
 Connect to device using [Putty](www.putty.org) (or another terminal).<br/>
 Default user/password for Raspbian - pi/raspberry.<br/>
@@ -19,3 +19,8 @@ Run following command & change user password on the menu.<br/>
 `sudo raspi-config`<br/>
 Then reboot.<br/>
 `sudo reboot`<br/>
+
+Now you have your RPI3/RPIW device ready for developement. Follow to this instructions: 
+ - [to build Qt libs](https://github.com/0xffe/CASa/tree/master/libs/qt)
+ - [to build & install MJPG_CAM](https://github.com/0xffe/CASa/tree/master/modules/mjpg_cam)
+ - [to install Web Server]()
