@@ -9,6 +9,9 @@ Local CASa web server fully utilized functionality of this module and allows to 
 
 To get this module worked please follow the instruction in the [build.md](https://github.com/0xffe/CASa/tree/master/modules/mjpg_cam) file
 
+**Recommendation:** the most suitable Web cams for MJPG_CAM are cameras which support jpeg streaming (for example Logitech C310). They generate video stream itself and do not use the RPI3/RPIW CPU resources. The average CPU load with such web camera service started is less than 1% (under 1280*720@10fps).
+
+
 
 
 
