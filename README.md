@@ -9,26 +9,12 @@ MicroComputer RPI3/RPIW can stream video, can control external devices via GPIO,
 
 [Lets start](https://github.com/0xffe/CASa/tree/master/device) to launch CASa
 
-Project phases:
- - STAGE #1 - preparing software core
- - STAGE #2 - developing remote video monitoring web-service
- - STAGE #3 - preparing GPIO controlling software
- - STAGE #4 - configuring system (WebServer\MySQL\PHP\scripting)
- - STAGE #5 - developing remote video monitoring web-service
- - STAGE #6 - developing application core
- - STAGE #7 - developing application modules
- - STAGE #8 - developing Bluetooth based sensors
- - TBD ... 
+To use and\or develope CASa system you shall follow with instructions below:<br>
+[1. Install Raspbian on device](https://github.com/0xffe/CASa/tree/master/device)<br>
+[2. Build & install MJPG_CAM](https://github.com/0xffe/CASa/tree/master/modules/mjpg_cam)<br>
+[3. Install Web server ](https://github.com/0xffe/CASa/)<br>
+[4. Build Qt libraries & install](https://github.com/0xffe/CASa/tree/master/libs/qt)
 
-# Current project state
 
-**STAGE 2 - DONE!**
- - creatine video monitoring & web cam controlling service
- - launching web server/database/php
- - develope initial version of the CASa Web Interface
-   
-   
-**STAGE 1 - DONE!**
- - qtbase crosscompile instruction (main core application)
- - qtconnectivity crosscompile instruction (needed for communication with Bluetooth sensors network) 
+
  
