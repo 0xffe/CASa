@@ -84,6 +84,22 @@ Get qtbase, configure Qt & build. The target directory is /usr/local/qt5pi on th
 `make`<br/>
 `make install`<br/>
 
+Build QSql with QMYSQL plugin (by default QMYSQL plugin is not building). This step required web server installed (instructions https://github.com/0xffe/CASa/tree/master/core/www)   
+`cd ~/opt`<br/>
+`mkdir mysql_src`<br/>
+Copying Mysql sources to host<br/>
+`rsync -avz pi@raspberrypi.local:/usr/include/mysql mysql_src`<br/>
+`cd /usr/lib/arm-linux-gnueabihf/`<br/>
+Copying Mysql libraries to host<br/>
+`sudo cp libmysqlclient.so libmysqlclient.so.18 libmysqlclient.so.18.0.0 libmysqlclient.a /lib`<br/>
+`sudo cp libmysqlclient_r.so libmysqlclient_r.so.18 libmysqlclient_r.so.18.0.0 libmysqlclient_r.a /lib`<br/>
+`rsync -avz pi@raspberrypi.local:/lib sysroot`<br/>
+Build & install QMYSQL plugin to work with MySQL DB
+`cd ~/opt/qtbase/src/plugins/sqldrivers/mysql`<br/>
+`~/opt/qt5/bin/qmake "INCLUDEPATH+=/opt/mysql_src/mysql" "LIBS+=-L/opt//lib -lmysqlclient_r" mysql.pro`<br/>
+`make`<br/>
+`make install`<br/>
+
 Get qtconnectivity, configure & build. <br/>
 `git clone git://code.qt.io/qt/qtconnectivity.git -b 5.6.4`<br/>
 `cd qtconnectivity`<br/>
@@ -102,7 +118,7 @@ Copying Qt libraries to the RPI3/RPIW
 `cd ~/opt`<br/>
 `rsync -avz qt5pi pi@raspberrypi.local:/usr/local`<br/>
 
-### Step 5 [on RPI] - Initializing the Qt libraries on the device
+### Step 6 [on RPI] - Initializing the Qt libraries on the device
 Update the device to let the linker find the Qt libs<br/>
 `echo /usr/local/qt5pi/lib | sudo tee /etc/ld.so.conf.d/qt5pi.conf`<br/>
 `sudo ldconfig`<br/>
